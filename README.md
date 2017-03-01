@@ -1,71 +1,26 @@
-###SQL task
+<img align="right" src="http://s3.amazonaws.com/google_mash_images_production/logos/913/small.png" alt="RubyGarage">
 
-**Given tables**<br>
-★ tasks (id, name, status, project_id) <br>
-★ projects (id, name) <br>
+###Task manager
+I'm a person who passionate about my own productivity. I want to manage my tasks and projects more effectively. I need a simple tool that supports me in controlling my task-flow
 
-**Write the queries for:**<br>
+**Functional requirements**<br>
+★ I want to be able to create/update/delete projects<br>
+★ I want to be able to add tasks to my project<br>
+★ I want to be able to update/delete tasks<br>
+★ I want to be able to prioritize tasks into a project<br>
+★ I want to be able to choose deadline for my task<br>
+★ I want to be able to mark a task as 'done'<br>
 
-★ Get all statuses, not repeating, alphabetically ordered
-```sql
-SELECT DISTINCT status
-FROM tasks
-ORDER BY status
-```
-★ Get the count of all tasks in each project, order by tasks count descending
-```sql
-SELECT projects.id, COUNT(tasks.id) AS task_count
-FROM projects LEFT JOIN tasks
-  ON projects.id = tasks.project_id
-GROUP BY projects.id
-ORDER BY task_count DESC
-```
-★ Get the count of all tasks in each project, order by projects names
-```sql
-SELECT projects.name, COUNT(tasks.id) AS task_count
-FROM projects LEFT JOIN tasks
-  ON projects.id = tasks.project_id
-GROUP BY projects.id
-ORDER BY task_count DESC
-```
-★ Get the tasks for all projects having the name beginning with "N" letter
-```sql
-SELECT tasks.name
-FROM projects INNER JOIN tasks
-  ON projects.id = tasks.project_id
-WHERE tasks.name LIKE 'N%'
-```
-★ Get the list of all projects containing the "a" letter in the middle of the name, and show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
-```sql
-SELECT projects.name, COUNT(tasks.id) AS task_count
-FROM projects LEFT JOIN tasks
-  ON projects.id = tasks.project_id
-WHERE projects.name LIKE '%a%'
-GROUP BY projects.id
-```
-★ Get the list of tasks with duplicate names. Order alphabetically
-```sql
-SELECT name, COUNT(*)
-FROM tasks
-GROUP BY name
-HAVING COUNT(*) > 1
-```
-★ Get the list of tasks having several exact matches of both name and status, from the project ‘Garage’. Order by matches count
-```sql
-SELECT tasks.name
-FROM projects LEFT JOIN tasks
-  ON projects.id = tasks.project_id
-WHERE projects.name = 'Garage' 
-GROUP BY tasks.name, tasks.status
-HAVING COUNT(tasks.id) > 1
-ORDER BY COUNT(tasks.id)
-```
-★ Get the list of project names having more than 10 tasks in status "completed". Order by project_id
-```sql
-SELECT projects.name
-FROM projects LEFT JOIN tasks
-  ON projects.id = tasks.project_id
-WHERE tasks.status = 'completed'
-GROUP BY projects.id
-HAVING COUNT(tasks.id) > 10
-```
+**Technical requirements**<br>
+★ It should be a WEB application<br>
+★ For the client side must be used: HTML, CSS (any libs as Twitter Bootstrap, Blueprint ...), JavaScript (any libs as jQuery, Prototype ...)<br>
+★ For a server side any language as Ruby, PHP, Python, JavaScript, C#, Java ...<br>
+★ It should have a client side and server side validation<br>
+★ It should look like on screens (see attached file 'test_task_view.png').<br>
+
+**Additional functionality**<br>
+★ It should work like one page WEB application and should use AJAX technology, load and submit data without reloading a page.<br>
+★ It should have user authentication solution and a user should only have access to their own projects and tasks. <br>
+★ It should have automated tests for the all functionality. <br>
+
+Enjoy! :wink:

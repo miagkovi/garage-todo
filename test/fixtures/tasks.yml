@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  is_done: false
-  project: one
+  name: MyString
 
 two:
-  title: MyString
-  is_done: false
-  project: two
+  name: MyString
